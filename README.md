@@ -1,7 +1,11 @@
 # realtimeStarter
 
+
+### deployment
+
+
 ### terminal:
-+ `- = flag` : used to flag specific things
++ `-` : used to flag specific things
 + `pwd` : present working directory
 + `cd` : change directory
 + `ls` : list all files
@@ -18,3 +22,5 @@
 ### node specific Stuff:
 + `node -v` : what version of Node am I using? Is it loaded?
 + `node` : run a node application : usually with a file path like: node app.js
++ `npm install package-name` : node package manager, installs packages and plugins for node (other peoples' code so we don't have to write so much.)
++ `npm init` : start a new node project and generate a packgage.json file
