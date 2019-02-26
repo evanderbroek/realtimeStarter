@@ -13,6 +13,11 @@ socket.on('massBleep', function(bleeping){
   if(bleeping){
     console.log('bleep');
     $('html').css('background-color', 'black');
+
+
+      console.log($('video').get(0).currentTime)
+
+
   }
   else if (!bleeping){
     console.log('notbleep');
