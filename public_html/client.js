@@ -1,37 +1,21 @@
 let socket = io.connect();
 
-$('body').on('click', function(event){
+console.log(window.innerWidth)
 
-  //what's the mouse's position on the page
-  console.log(event.clientX, event.clientY);
+if(window.innerWidth<=776){
+  console.log('Yo you are mobile.');
+  window.location.href = "mobile.html";
+}
 
-  //a JSON item package:
-  $('<div>😐</div>').css({
-    'position' : 'absolute',
-    'top' : event.clientY,
-    'left' : event.clientX,
-  }).appendTo('body');
 
-  let mouseDataToSend = {
-    'top' : event.clientY,
-    'left' : event.clientX,
+socket.on('massBleep', function(bleeping){
+
+  if(bleeping){
+    console.log('bleep');
+    $('html').css('background-color', 'black');
   }
-
-console.log(mouseDataToSend);
-
-//send the mouse data up to the server so it can relay it to all users
-socket.emit('addEmoji', mouseDataToSend);
-
-//listen for incoming messages and react to them using the mouse data that was sent down from the server from any other client out there.
-socket.on('massSendEmoji', function(receivedMouseData){
-
-  $('<div>😐</div>').css({
-    'position' : 'absolute',
-    'top' : receivedMouseData.top,
-    'left' : receivedMouseData.left
-  }).appendTo('body');
-
-})
-
-
+  else if (!bleeping){
+    console.log('notbleep');
+    $('html').css('background-color', 'white');
+  }
 });

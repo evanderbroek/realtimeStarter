@@ -21,10 +21,16 @@ io.on('connection', function(socket){
 
   //message relay
   //listen for a message from any client
-  socket.on('addEmoji', function(incomingMouseData){
+  socket.on('makeBleep', function(bleeping){
 
-    //if we got one, send it out (relay it) to all clients
-    io.emit('massSendEmoji', incomingMouseData);
+    io.emit('massBleep', bleeping);
+
+    if(bleeping){
+    console.log('bleep');
+    }
+    else {
+      console.log('notbleep');  
+    }
 
   });
 
