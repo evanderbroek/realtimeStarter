@@ -9,6 +9,26 @@ body {
   justify-content: center;
 }
 
+.cover{
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;}
+
+.unclickable{
+  pointer-events: none;
+}
+
+.ready{
+  position: absolute;
+  top: 20%;
+  background-color: white;
+  width: 70vw;
+  height: 30vw;
+}
+
 .button{
   display: flex;
   align-self: center;
@@ -18,4 +38,18 @@ body {
   height: 70vw;
 
   background-color: green;
+}
+
+@keyframes fadeAway {
+  0%{
+    opacity: 100;
+  }
+
+  50%{
+    opacity: 50;
+  }
+
+  100%{
+    opacity: 0;
+  }
 }

@@ -11,6 +11,10 @@ const io = require('socket.io')(server);
 //serve out files in our public_html folder
 app.use(express.static('public_html'));
 
+let users = io.engine.clientsCount;
+let mobileUsers = null;
+let pcUsers = null;
+let readiedUsers = null;
 
 //socket==client
 //io==server
@@ -18,6 +22,22 @@ io.on('connection', function(socket){
 
   //log out the unique identifier for this connection
   console.log(socket.id);
+  users = io.engine.clientsCount;
+  console.log('users: ' + users);
+  io.emit('userNumber', users);
+
+  socket.on('readied', function(yesReady){
+    users = io.engine.clientsCount;
+    readiedUsers+=yesReady;
+    console.log('# of users: ' + users);
+    console.log('readied users = ' + readiedUsers);
+
+    if(readiedUsers == users-1 && readiedUsers!=0){
+      console.log('all ready');
+      io.emit('allReady');
+    }
+
+  })
 
   //message relay
   //listen for a message from any client
@@ -29,7 +49,7 @@ io.on('connection', function(socket){
     console.log('bleep');
     }
     else {
-      console.log('notbleep');  
+      console.log('notbleep');
     }
 
   });
