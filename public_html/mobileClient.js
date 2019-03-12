@@ -2,22 +2,18 @@ let socket = io.connect();
 
 console.log(window.innerWidth)
 
+//variables
 let bleeping = false;
 let usedReady = false;
 let yesReady = 1;
-
-function delayAwayCover(){
-  timeoutID = setTimeout(awayCover, 2001);
-}
 
 function awayCover(){
   $('.cover').css({
     'display' : 'none'
   });
 }
-
-function delayAwayReady(){
-  timeoutID = setTimeout(awayReady, 2001);
+function delayAwayCover(){
+  timeoutID = setTimeout(awayCover, 2001);
 }
 
 function awayReady(){
@@ -25,8 +21,11 @@ function awayReady(){
     'display' : 'none'
   });
 }
+function delayAwayReady(){
+  timeoutID = setTimeout(awayReady, 2001);
+}
 
-
+//when a user hits ready
 $('.ready').on('touchstart', function(){
   $('.ready').css({
     'animation-name' : 'fadeAway',
@@ -42,6 +41,7 @@ $('.ready').on('touchstart', function(){
   }
 })
 
+//when all users tell the server they are ready
 socket.on('allReady', function(){
   $('.cover').css({
     'animation-name' : 'fadeAway',
@@ -54,6 +54,7 @@ socket.on('allReady', function(){
   delayAwayCover();
 });
 
+//when a user touches/holds the bleep button
 $('.button').on('touchstart',function(event){
   console.log('you clicked the button');
 
@@ -66,6 +67,7 @@ $('.button').on('touchstart',function(event){
 
 })
 
+//when a user is not touching/releases the bleep button
 $('.button').on('touchend',function(event){
   console.log('you unclicked the button');
 

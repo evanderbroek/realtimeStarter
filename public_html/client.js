@@ -6,6 +6,7 @@ let mobile, pc = 1;
 
 document.getElementById("myAudio").muted = true;
 
+//check if device is mobile or desktop
 console.log(window.innerWidth)
 
 if(window.innerWidth<=776){
@@ -19,7 +20,7 @@ else{
   $('.video').html('<video id="myVideo" width="1000" height="auto" src="media/Curtis_Ethan_Tristen_Minnesota_Goodbye.mp4"></video>');
 }
 
-
+//once all mobile devices are ready:
 socket.on('allReady', function(){
   $('.cover').css({
     'animation-name' : 'fadeAway',
@@ -54,16 +55,15 @@ socket.on('allReady', function(){
 
 });
 
+//log out how many users are online
 socket.on('userNumber', function(users){
   usersOnline = users;
 
   console.log(usersOnline);
 })
 
-
+//bleep the video
 socket.on('massBleep', function(bleeping){
-
-
 
   if(bleeping){
     console.log('bleep');
@@ -74,7 +74,6 @@ socket.on('massBleep', function(bleeping){
     // $('#myVideo').play();
 
       console.log($('video').get(0).currentTime)
-
 
   }
   else if (!bleeping){
