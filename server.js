@@ -17,6 +17,8 @@ let pcUsers = null;
 let readiedUsers = null;
 let usersBleeping = 0;
 
+let inQueue = null;
+
 //socket==client
 //io==server
 io.on('connection', function(socket){
@@ -26,6 +28,18 @@ io.on('connection', function(socket){
   users = io.engine.clientsCount;
   console.log('users: ' + users);
   io.emit('userNumber', users);
+
+  io.on('pcUser', function(pc){
+    pcUsers+=pc;
+  })
+
+  io.on('mobileUser', function(mobile){
+    mobileUsers+=mobile;
+  })
+
+  io.on('tc', function(currentTC){
+    io.emit('timeCode', currentTC);
+  })
 
   //determine when all users are ready
   socket.on('readied', function(yesReady){
@@ -37,6 +51,8 @@ io.on('connection', function(socket){
     if(readiedUsers == users-1 && readiedUsers!=0){
       console.log('all ready');
       io.emit('allReady');
+      io.emit('start');
+      inQueue = true;
     }
 
   })
@@ -73,6 +89,11 @@ io.on('connection', function(socket){
 
   });
 
+  socket.on('end', function(){
+    readiedUsers = 0;
+    inQueue = false;
+    io.emit('endIt');
+  })
 });
 
 

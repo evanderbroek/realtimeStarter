@@ -1,13 +1,25 @@
 let socket = io.connect();
 var bleep = document.getElementById("myAudio");
 var video = document.getElementById("myVideo");
+var vidLength = 75.114667;
 var usersOnline = null;
 let mobile, pc = 1;
+let currentTC = 0;
 
 document.getElementById("myAudio").muted = true;
 
+socket.on('endIt', function(){
+  location.reload();
+})
+
 //check if device is mobile or desktop
 console.log(window.innerWidth)
+
+if($('video').get(0).currentTime > 0 && $('video').get(0).currentTime < 75.114667){
+
+  window.location.href = "queue.html";
+
+}
 
 if(window.innerWidth<=776){
   console.log('Yo you are mobile.');
@@ -46,12 +58,27 @@ socket.on('allReady', function(){
 
   function delayVideo(){
     timeoutID = setTimeout(playVideo, 5000)
+    setInterval(function(){
+      console.log($('video').get(0).currentTime);
+
+      currentTC = $('video').get(0).currentTime;
+
+      socket.emit('tc', currentTC)
+
+      if($('video').get(0).currentTime==75.114667){
+        socket.emit('end');
+        }
+
+
+    }, 1000);
   }
   function playVideo(){
     document.getElementById("myVideo").play();
   }
 
   delayVideo();
+
+
 
 });
 

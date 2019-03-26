@@ -1,5 +1,9 @@
 let socket = io.connect();
 
+socket.on('endIt', function(){
+  location.reload();
+})
+
 console.log(window.innerWidth)
 
 //variables
@@ -58,8 +62,8 @@ socket.on('allReady', function(){
 $('.button').on('touchstart',function(event){
   console.log('you clicked the button');
 
-  $('.button').css('background-color' , 'red')
-  $('html').css('background-color' , 'yellow');
+  $('.button').css('background-color' , 'brown')
+  // $('html').css('background-color' , 'yellow');
 
   let bleeping = true;
   console.log(bleeping);
@@ -71,8 +75,8 @@ $('.button').on('touchstart',function(event){
 $('.button').on('touchend',function(event){
   console.log('you unclicked the button');
 
-  $('.button').css('background-color' , 'green');
-  $('html').css('background-color' , 'blue');
+  $('.button').css('background-color' , 'crimson');
+  // $('html').css('background-color' , 'blue');
 
   let bleeping = false;
   console.log(bleeping);
