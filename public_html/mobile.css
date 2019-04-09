@@ -1,5 +1,6 @@
 html{
   background-color: black;
+  font-family: 'Dokdo', cursive;
 }
 
 body {
@@ -7,6 +8,7 @@ body {
   width: 100vw;
   height: 100vh;
   justify-content: center;
+  color: white;
 }
 
 .cover{
@@ -23,11 +25,36 @@ body {
 
 .ready{
   position: absolute;
-  top: 20%;
-  background-color: white;
+  top: 35%;
+  background-color: black;
   width: 70vw;
   height: 30vw;
 }
+
+.flexContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flexItem{
+  align-self: center;
+}
+
+.text{
+  padding: 0px;
+  margin: 0px;
+  font-size: 100px;
+  height: 100px;
+}
+
+.subText{
+  margin: 0px;
+  font-family: 'Muli', sans-serif;
+}
+
 
 .button{
   display: flex;

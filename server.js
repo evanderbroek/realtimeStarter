@@ -18,6 +18,7 @@ let readiedUsers = null;
 let usersBleeping = 0;
 
 let inQueue = null;
+let playback = false;
 
 //socket==client
 //io==server
@@ -39,6 +40,19 @@ io.on('connection', function(socket){
 
   io.on('tc', function(currentTC){
     io.emit('timeCode', currentTC);
+  })
+
+  io.on('playing', function(playing){
+    if(playing){
+      playback = true;
+      console.log('playback is true');
+    }
+    else{
+      playback = false;
+      console.log('playback is true');
+    }
+
+    io.emit('playback', playback);
   })
 
   //determine when all users are ready

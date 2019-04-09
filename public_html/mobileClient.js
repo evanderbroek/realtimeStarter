@@ -4,6 +4,12 @@ socket.on('endIt', function(){
   location.reload();
 })
 
+socket.on('playback', function(playback){
+  if(playback){
+    window.location.href = "queue.html";
+  }
+})
+
 console.log(window.innerWidth)
 
 //variables

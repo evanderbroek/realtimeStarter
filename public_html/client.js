@@ -5,6 +5,7 @@ var vidLength = 75.114667;
 var usersOnline = null;
 let mobile, pc = 1;
 let currentTC = 0;
+let playing = false;
 
 document.getElementById("myAudio").muted = true;
 
@@ -15,11 +16,11 @@ socket.on('endIt', function(){
 //check if device is mobile or desktop
 console.log(window.innerWidth)
 
-if($('video').get(0).currentTime > 0 && $('video').get(0).currentTime < 115.157333){
-
-  window.location.href = "queue.html";
-
-}
+socket.on('playback', function(playback){
+  if(playback){
+    window.location.href = "queue.html";
+  }
+})
 
 if(window.innerWidth<=776){
   console.log('Yo you are mobile.');
@@ -65,9 +66,23 @@ socket.on('allReady', function(){
 
       socket.emit('tc', currentTC)
 
-      if($('video').get(0).currentTime==75.114667){
+      if($('video').get(0).currentTime==115.157333){
         socket.emit('end');
         }
+
+      if($('video').get(0).currentTime > 0 && $('video').get(0).currentTime < 115.157333){
+
+
+
+        playing = true;
+
+        socket.emit('playing', playing);
+
+      }
+      else{
+        playing = false;
+        socket.emit('playing', playing);
+      }
 
 
     }, 1000);
