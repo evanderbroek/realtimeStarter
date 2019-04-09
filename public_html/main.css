@@ -36,6 +36,35 @@ body{
 
 }
 
+.unclickable{
+  pointer-events: none;
+}
+
+.flexContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flexItem{
+  align-self: center;
+}
+
+.text{
+  color: white;
+  padding: 0px;
+  margin: 0px;
+  /* font-size: 100px; */
+  height: 100px;
+}
+
+.subText{
+  margin: 0px;
+  font-family: 'Muli', sans-serif;
+}
+
 
 @keyframes fadeAway {
   0%{
