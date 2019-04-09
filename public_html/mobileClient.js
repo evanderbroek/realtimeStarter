@@ -1,8 +1,8 @@
 let socket = io.connect();
 
-socket.on('empty', function(){
-  location.reload();
-})
+// socket.on('empty', function(){
+//   location.reload();
+// })
 
 socket.on('endIt', function(){
   location.reload();

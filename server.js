@@ -30,7 +30,7 @@ io.on('connection', function(socket){
   console.log('users: ' + users);
   io.emit('userNumber', users);
 
-  if(users < 1){
+  if(mobileUsers < 1){
     io.emit('empty');
   }
 
