@@ -15,7 +15,7 @@ socket.on('endIt', function(){
 //check if device is mobile or desktop
 console.log(window.innerWidth)
 
-if($('video').get(0).currentTime > 0 && $('video').get(0).currentTime < 75.114667){
+if($('video').get(0).currentTime > 0 && $('video').get(0).currentTime < 115.157333){
 
   window.location.href = "queue.html";
 
@@ -29,7 +29,7 @@ if(window.innerWidth<=776){
 else{
   console.log('Hey its desktop');
   socket.emit('pcUser', pc);
-  $('.video').html('<video id="myVideo" width="1000" height="auto" src="media/Curtis_Ethan_Tristen_Minnesota_Goodbye.mp4"></video>');
+  $('.video').html('<video id="myVideo" width="1000" height="auto" src="media/Bleep_720p.mp4"></video>');
 }
 
 //once all mobile devices are ready:
