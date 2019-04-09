@@ -30,6 +30,10 @@ io.on('connection', function(socket){
   console.log('users: ' + users);
   io.emit('userNumber', users);
 
+  if(users < 1){
+    io.emit('empty');
+  }
+
   io.on('pcUser', function(pc){
     pcUsers+=pc;
   })
@@ -54,6 +58,7 @@ io.on('connection', function(socket){
 
     io.emit('playback', playback);
   })
+
 
   //determine when all users are ready
   socket.on('readied', function(yesReady){
